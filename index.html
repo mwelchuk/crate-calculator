@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>Crate Calculator</title>
+<style>
+table.show, tr.show, th.show, td.show {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th.show, td.show {
+	padding: 3px;
+}
+</style>
+<script>
+function calculate() {
+	var b = document.getElementById("bottle_dia").value;
+	var d = document.getElementById("spacer_thick").value;
+	var h = document.getElementById("bottle_height").value;
+	var s = document.getElementById("vert_space").value;
+
+	var vw = document.getElementById("vert_width").value;
+	var vt = document.getElementById("vert_thick").value;
+	var sw = document.getElementById("side_width").value;
+	var st = document.getElementById("side_thick").value;
+
+	var il = (4 * d) + (5 * b);
+	var iw = (3 * d) + (4 * b);
+
+	var ls = (2 * vt) + (2 * st) + il;
+	var ss = iw;
+	var vl = (h * 1) + (s * 1);
+	var sl = iw - (2 * vw);
+
+	document.getElementById("long_length").innerHTML = ls;
+	document.getElementById("short_length").innerHTML = ss;
+	document.getElementById("vert_length").innerHTML = vl;
+	document.getElementById("support_length").innerHTML = sl;
+}
+</script>
+</head>
+<body>
+<h1>Crate Calculator</h1>
+<p>This page attempts to work out measurements for creating a crate using wood dimensions provided. 2 cuts of wood are needed to create these crates, a small rectangular lengths for the verticals and bottom supports, thin wide lengths for the sides and bottoms. The original was built using planed approx 16x36mm timber and feather edge boarding (approx 10x97mm).</p>
+<h2>Design</h2>
+<p>The design holds 20 bottles of the size choosen. I have found it useful to size the crates I've made to fit the largest combined diameter/height of the bottles I have. In fact, this allows me to cram an extra row of bottles in when I use the crates with the taller, thiner bottles I have, so the crates hold 24 bottles for me.</p>
+<img src="sizing.png" alt="Crate design and spacing" />
+<h2>Wood dimesions</h2>
+<p>Put the dimensions of the wood you wish to (re)use below:</p>
+<table>
+<tr>
+<th>Type</th>
+<th>Width (mm)</th>
+<th>Thickness (mm)</th>
+</tr>
+<tr>
+<th>Verticals</th>
+<td><input type="number" id="vert_width" value=36 /></td>
+<td><input type="number" id="vert_thick" value=16 /></td>
+</tr>
+<tr>
+<th>Sides</th>
+<td><input type="number" id="side_width" value=97 /></td>
+<td><input type="number" id="side_thick" value=10 /></td>
+</tr>
+</table>
+<h2>Bottle sizes and spacing</h2>
+<p>Put the (maximum) dimension of your bottles in here, also specifiy the ammount of clearance you want between the bottles when in the crate (useful if you want to design some spacers or something like that).</p>
+<table>
+<tr>
+<th>Bottle diameter (mm)</th>
+<td><input type="number" id="bottle_dia" value=75 /></td>
+</tr>
+<tr>
+<th>Spacer thickness (mm)</th>
+<td><input type="number" id="spacer_thick" value=5 /></td>
+</tr>
+<tr>
+<th>Bottle height (mm)</th>
+<td><input type="number" id="bottle_height" value=270 /></td>
+</tr>
+<tr>
+<th>Vertical space (mm)</th>
+<td><input type="number" id="vert_space" value=20 /></td>
+</tr>
+</table>
+<h2>BOM</h2>
+<p>Here are the material sizes that are needed to build the crate.</p>
+
+<p><button onclick="calculate()">Click here to calculate required lengths</button></p>
+
+<table class="show">
+<tr class="show">
+<th class="show">Quantity</th>
+<th class="show">Part</th>
+<th class="show">Material</th>
+<th class="show">Length (mm)</th>
+</tr>
+<tr class="show">
+<td class="show">7</td>
+<td class="show">Long sides</td>
+<td class="show">Thin board</td>
+<td class="show"><div id="long_length">(run calculation)<div></td>
+</tr>
+<tr class="show">
+<td class="show">4</td>
+<td class="show">Short sides</td>
+<td class="show">Thin board</td>
+<td class="show"><div id="short_length">(run calculation)<div></td>
+</tr>
+<tr class="show">
+<td class="show">4</td>
+<td class="show">Vertical bars</td>
+<td class="show">Rectangular strip</td>
+<td class="show"><div id="vert_length">(run calculation)<div></td>
+</tr>
+<tr class="show">
+<td class="show">2</td>
+<td class="show">Bottom support</td>
+<td class="show">Rectangular strip</td>
+<td class="show"><div id="support_length">(run calculation)<div></td>
+</tr>
+</table>
+</body>
+</html>
